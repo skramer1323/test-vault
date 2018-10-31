@@ -2,6 +2,7 @@ FROM alpine:3.8
 
 # This is the release of Vault to pull in.
 ENV VAULT_VERSION=0.11.4
+ENV VAULT_DEV_ROOT_TOKEN_ID=/tmp
 
 # Create a vault user and group first so the IDs get set the same way,
 # even as the rest of this may change over time.
