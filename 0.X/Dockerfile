@@ -7,7 +7,6 @@ ENV VAULT_VERSION=0.11.4
 # even as the rest of this may change over time.
 RUN addgroup vault && \
     adduser -S -G vault vault
-USER vault
 # Set up certificates, our base tools, and Vault.
 RUN set -eux; \
     apk add --no-cache ca-certificates gnupg openssl libcap su-exec dumb-init && \
@@ -75,7 +74,7 @@ EXPOSE 8200
 # capability so that Vault can mlock memory.
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT ["docker-entrypoint.sh"]
-
+USER vault
 # By default you'll get a single-node development server that stores everything
 # in RAM and bootstraps itself. Don't use this configuration for production.
 CMD ["server", "-dev"]
