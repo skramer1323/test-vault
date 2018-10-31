@@ -56,7 +56,7 @@ RUN mkdir -p /vault/logs && \
     
 RUN touch /vault/config/local.json 
 
-RUN echo "echo -e "backend "file" { \
+RUN echo -e "backend "file" { \
     path = "/vault/file/vaultsecrets" \
     } \
     listener "tcp" { \
