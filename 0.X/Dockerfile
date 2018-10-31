@@ -20,3 +20,5 @@ RUN apk --no-cache add \
 EXPOSE 8200
 
 ENTRYPOINT ["/usr/local/bin/vault"]
+
+CMD [ "server" ]
