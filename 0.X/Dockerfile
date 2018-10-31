@@ -57,7 +57,7 @@ RUN mkdir -p /vault/logs && \
     chown -R vault:vault /vault
 #
 #RUN echo -e "baRUN touch /vault/config/local.json 
-RUN ckend "file" { \
+#RUN ckend "file" { \
 #    path = "/vault/file/vaultsecrets" \
 #    } \
 #    listener "tcp" { \
