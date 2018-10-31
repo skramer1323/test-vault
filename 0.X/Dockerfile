@@ -55,7 +55,7 @@ RUN mkdir -p /vault/logs && \
     mkdir -p /vault/config && \
     chown -R vault:vault /vault
     
-#RUN touch /vault/config/local.json 
+RUN touch /vault/config/local.json 
 #
 #RUN echo -e "backend "file" { \
 #    path = "/vault/file/vaultsecrets" \
