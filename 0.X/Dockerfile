@@ -54,10 +54,11 @@ RUN mkdir -p /vault/logs && \
     mkdir -p /vault/file && \
     mkdir -p /vault/config && \
     chown -R vault:vault /vault
-    
 RUN touch /vault/config/local.json 
+RUN chmod -R vault:vault /vault
 #
-#RUN echo -e "backend "file" { \
+#RUN echo -e "baRUN touch /vault/config/local.json 
+RUN ckend "file" { \
 #    path = "/vault/file/vaultsecrets" \
 #    } \
 #    listener "tcp" { \
@@ -85,6 +86,7 @@ EXPOSE 8200
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT ["docker-entrypoint.sh"]
 USER vault
+
 # By default you'll get a single-node development server that stores everything
 # in RAM and bootstraps itself. Don't use this configuration for production.
 CMD ["server", "-dev"]
