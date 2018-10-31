@@ -80,20 +80,20 @@ if [ "$1" = 'vault' ]; then
         chown -R vault:vault /vault/file
     fi
 
-    if [ -z "$SKIP_SETCAP" ]; then
-        # Allow mlock to avoid swapping Vault memory to disk
-        setcap cap_ipc_lock=+ep $(readlink -f $(which vault))
-
-        # In the case vault has been started in a container without IPC_LOCK privileges
-        if ! vault -version 1>/dev/null 2>/dev/null; then
-            >&2 echo "Couldn't start vault with IPC_LOCK. Disabling IPC_LOCK, please use --privileged or --cap-add IPC_LOCK"
-            setcap cap_ipc_lock=-ep $(readlink -f $(which vault))
-        fi
-    fi
-
-    if [ "$(id -u)" = '0' ]; then
-      set -- su-exec vault "$@"
-    fi
+#    if [ -z "$SKIP_SETCAP" ]; then
+#        # Allow mlock to avoid swapping Vault memory to disk
+#        setcap cap_ipc_lock=+ep $(readlink -f $(which vault))
+#
+#        # In the case vault has been started in a container without IPC_LOCK privileges
+#        if ! vault -version 1>/dev/null 2>/dev/null; then
+#            >&2 echo "Couldn't start vault with IPC_LOCK. Disabling IPC_LOCK, please use --privileged or --cap-add IPC_LOCK"
+#            setcap cap_ipc_lock=-ep $(readlink -f $(which vault))
+#        fi
+#    fi
+#
+#    if [ "$(id -u)" = '0' ]; then
+#      set -- su-exec vault "$@"
+#    fi
 fi
 
 exec "$@"
