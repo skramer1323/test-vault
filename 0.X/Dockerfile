@@ -53,7 +53,7 @@ RUN set -eux; \
 RUN mkdir -p /vault/logs && \
     mkdir -p /vault/file && \
     mkdir -p /vault/config && \
-    touch /vault/config/local.json \
+    touch /vault/config/local.json && \
     chown -R vault:vault /vault
 #
 #RUN echo -e "baRUN touch /vault/config/local.json 
