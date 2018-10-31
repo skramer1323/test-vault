@@ -1,32 +1,22 @@
-# base image
-FROM alpine:3.7
+# Docker file to run Hashicorp Vault (vaultproject.io)
 
-# set vault version
-ENV VAULT_VERSION 0.10.3
+FROM gliderlabs/alpine:3.3
+MAINTAINER Stuart Wong <cgs.wong@gmail.com>
 
-# create a new directory
-RUN mkdir /vault
+ENV VAULT_VERSION 0.7.0
+ENV VAULT_TMP /tmp/vault.zip
+ENV VAULT_HOME /usr/local/bin
+ENV PATH $PATH:${VAULT_HOME}
 
-# download dependencies
 RUN apk --no-cache add \
       bash \
       ca-certificates \
-      wget
+      wget &&\
+    wget --quiet --output-document=${VAULT_TMP} https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip &&\
+    unzip ${VAULT_TMP} -d ${VAULT_HOME} &&\
+    rm -f ${VAULT_TMP}
 
-# download and set up vault
-RUN wget --quiet --output-document=/tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip && \
-    unzip /tmp/vault.zip -d /vault && \
-    rm -f /tmp/vault.zip && \
-    chmod +x /vault
-
-# update PATH
-ENV PATH="PATH=$PATH:$PWD/vault"
-
-# add the config file
-#COPY ./config/vault-config.json /vault/config/vault-config.json
-
-# expose port 8200
+# Listener API tcp port
 EXPOSE 8200
 
-# run vault
-ENTRYPOINT ["vault"]
+ENTRYPOINT ["/usr/local/bin/vault"]
