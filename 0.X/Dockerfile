@@ -54,7 +54,8 @@ RUN mkdir -p /vault/logs && \
     mkdir -p /vault/file && \
     mkdir -p /vault/config && \
     chown -R vault:vault /vault
-
+RUN touch /vault/config/local.json 
+RUN echo "VAULT_LOCAL_CONFIG={backend": {"file":  { path = "/vault/file/vaultsecrets" } listener "tcp" { address = "0.0.0.0:8200" tls_disable = 1}'" > /vault/config/local.json 
 # Expose the logs directory as a volume since there's potentially long-running
 # state in there
 #VOLUME /vault/logs
