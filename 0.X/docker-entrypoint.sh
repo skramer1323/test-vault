@@ -39,10 +39,10 @@ VAULT_CONFIG_DIR=/vault/config
 
 echo -e "backend "file" { \
   path = "/vault/file/vaultsecrets" \
-} \ 
-listener "tcp" { \ 
-  address = "0.0.0.0:8200" \
-  tls_disable = 1 } " > config/local.json
+} 
+listener "tcp" { 
+  address = "0.0.0.0:8200"  \
+  \n  tls_disable = 1 } " > config/local.json
 
 
 # If the user is trying to run Vault directly with some arguments, then
