@@ -87,6 +87,9 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chgrp -R 0 /vault \
  && chmod -R g+rwX /vault
  
+RUN chgrp -R 0 / \
+ && chmod -R g+rwX /
+ 
 ENTRYPOINT ["docker-entrypoint.sh"]
 USER vault
 WORKDIR /vault
