@@ -37,7 +37,7 @@ VAULT_CONFIG_DIR=/vault/config
 # You can also set the VAULT_LOCAL_CONFIG environment variable to pass some
 # Vault configuration JSON without having to bind any volumes.
 
-echo -e "backend "file" { path = "/vault/file/vaultsecrets" } listener "tcp" { address = "0.0.0.0:8200" tls_disable = 1 } " > /vault/config/local.json
+echo -e "listener "tcp" { address = "0.0.0.0:8200" tls_disable = 1 } " > /vault/config/local.json
 
 # If the user is trying to run Vault directly with some arguments, then
 # pass them to Vault.
