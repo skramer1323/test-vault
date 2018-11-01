@@ -86,9 +86,9 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 RUN chgrp -R 0 /vault \
  && chmod -R g+rwX /vault
- 
-RUN chgrp -R 0 / \
- && chmod -R g+rwX /
+RUN  touch //.vault-token 
+RUN chgrp -R 0 //.vault-token  \
+ && chmod -R g+rwX //.vault-token 
  
 ENTRYPOINT ["docker-entrypoint.sh"]
 USER vault
