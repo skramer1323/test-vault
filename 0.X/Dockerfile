@@ -83,6 +83,10 @@ EXPOSE 8200
 # For production derivatives of this container, you shoud add the IPC_LOCK
 # capability so that Vault can mlock memory.
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+RUN chgrp -R 0 /vault \
+ && chmod -R g+rwX /vault
+ 
 ENTRYPOINT ["docker-entrypoint.sh"]
 USER vault
 
