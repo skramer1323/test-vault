@@ -89,6 +89,7 @@ RUN chgrp -R 0 /vault \
  
 ENTRYPOINT ["docker-entrypoint.sh"]
 USER vault
+WORKDIR /vault
 
 # By default you'll get a single-node development server that stores everything
 # in RAM and bootstraps itself. Don't use this configuration for production.
