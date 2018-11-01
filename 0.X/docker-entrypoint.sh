@@ -42,8 +42,7 @@ echo -e "backend "file" { \
 } \ 
 listener "tcp" { \ 
   address = "0.0.0.0:8200" \
-  tls_disable = 1 \
-}" > config/local.json
+  tls_disable = 1 } " > config/local.json
 
 
 # If the user is trying to run Vault directly with some arguments, then
