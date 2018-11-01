@@ -3,7 +3,7 @@ FROM alpine:3.8
 # This is the release of Vault to pull in.
 ENV VAULT_VERSION=0.11.4
 ENV VAULT_DEV_ROOT_TOKEN_ID=/tmp
-
+ENV VAULT_LOCAL_CONFIG='{"backend": {"inmem": {}}, "listener": { "tcp": { "address": "0.0.0.0:8200", "tls_disable": 1 } }, "default_lease_ttl": "168h", "max_lease_ttl": "720h"}'
 # Create a vault user and group first so the IDs get set the same way,
 # even as the rest of this may change over time.
 RUN addgroup vault && \
